@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
 import { MainLayout } from '@/shared/ui/main-layout';
 import { MainTitle } from '@/shared/ui/main-title';
 import type { Breadcrumb as TBreadcrumb } from '@/shared/types/breadcrumb';
@@ -11,7 +13,7 @@ export default function CreateDocumentPage() {
     { label: '概要を入力', active: true },
   ];
 
-  const contents = [
+  const [contents, setContents] = useState([
     {
       title: '表紙',
       description: 'AIを活用した営業管理ツールのご提案',
@@ -51,7 +53,21 @@ export default function CreateDocumentPage() {
       title: '最後に',
       description: '最後となりますが、当社からのメッセージです',
     },
-  ];
+  ]);
+
+  const [promptText, setPromptText] = useState('');
+
+  const handleTitleUpdate = (index: number, newTitle: string) => {
+    const updatedContents = [...contents];
+    updatedContents[index].title = newTitle;
+    setContents(updatedContents);
+  };
+
+  const handleDescriptionUpdate = (index: number, newDescription: string) => {
+    const updatedContents = [...contents];
+    updatedContents[index].description = newDescription;
+    setContents(updatedContents);
+  };
 
   return (
     <MainLayout breadcrumbs={breadcrumbs}>
@@ -76,6 +92,10 @@ export default function CreateDocumentPage() {
             title={item.title}
             description={item.description}
             hasEditButton={item.hasEditButton}
+            onUpdateTitle={(newTitle) => handleTitleUpdate(index, newTitle)}
+            onUpdateDescription={(newDescription) =>
+              handleDescriptionUpdate(index, newDescription)
+            }
           />
         ))}
       </div>
@@ -86,8 +106,10 @@ export default function CreateDocumentPage() {
         </label>
         <div className="mt-2 flex gap-5">
           <textarea
-            className="h-[120px] w-full rounded-md border border-gray-300 p-2 text-sm focus:border-blue-500 resize-none"
+            className="h-[120px] w-full resize-none rounded-md border border-gray-300 p-2 text-sm focus:border-blue-500"
             rows={3}
+            value={promptText}
+            onChange={(e) => setPromptText(e.target.value)}
           ></textarea>
           <ControlledButton
             type="submit"
