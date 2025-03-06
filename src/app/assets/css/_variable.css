@@ -1,0 +1,6 @@
+:root {
+  --app-main-margin: 1rem;
+  --app-header-height: 56px;
+  --app-sidebar-width: 180px;
+  --app-sidebar-width-collapsed: 84px;
+}
