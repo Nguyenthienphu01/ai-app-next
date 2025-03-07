@@ -6,6 +6,7 @@ import { MainTitle } from '@/shared/ui/main-title';
 import type { Breadcrumb as TBreadcrumb } from '@/shared/types/breadcrumb';
 import { ControlledButton } from '@/shared/ui/controlled/button';
 import { TableOfContentsItem } from './ui/table-of-contents-item';
+import TemplateDialog from './ui/template-dialog';
 
 export default function CreateDocumentPage() {
   const breadcrumbs: TBreadcrumb[] = [
@@ -56,6 +57,7 @@ export default function CreateDocumentPage() {
   ]);
 
   const [promptText, setPromptText] = useState('');
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const handleTitleUpdate = (index: number, newTitle: string) => {
     const updatedContents = [...contents];
@@ -69,6 +71,15 @@ export default function CreateDocumentPage() {
     setContents(updatedContents);
   };
 
+  const handleOpenDialog = () => {
+    setIsDialogOpen(true);
+  };
+
+  const handleDownload = (selectedTemplateIds) => {
+    console.log('Selected templates:', selectedTemplateIds);
+    setIsDialogOpen(false);
+  };
+
   return (
     <MainLayout breadcrumbs={breadcrumbs}>
       <div className="flex items-center justify-between">
@@ -76,6 +87,7 @@ export default function CreateDocumentPage() {
         <ControlledButton
           type="submit"
           className="bg-blue-500 text-white hover:bg-blue-600 hover:text-white"
+          onClick={handleOpenDialog}
         >
           次へ
         </ControlledButton>
@@ -119,6 +131,13 @@ export default function CreateDocumentPage() {
           </ControlledButton>
         </div>
       </div>
+
+      <TemplateDialog
+        isOpen={isDialogOpen}
+        onClose={() => setIsDialogOpen(false)}
+        onDownload={handleDownload}
+        pageTitle="表紙"
+      />
     </MainLayout>
   );
 }

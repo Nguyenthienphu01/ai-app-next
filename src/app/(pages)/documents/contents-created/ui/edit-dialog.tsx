@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { ControlledButton } from '@/shared/ui/controlled/button';
 
 interface EditDialogProps {
   isOpen: boolean;
@@ -23,25 +24,27 @@ export function EditDialog({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#000000BF]">
-      <div className="w-full max-w-md rounded-lg bg-white p-5 shadow-lg">
+      <div className="flex h-[280px] w-[502px] flex-col rounded-lg bg-white p-5 shadow-lg">
         <textarea
-          className="h-[120px] w-full resize-none rounded-lg border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
+          className="h-[176px] w-[462px] resize-none rounded-lg border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
           value={value}
           onChange={(e) => onChange(e.target.value)}
         />
-        <div className="mt-4 flex justify-end space-x-2">
-          <button
+        <div className="mt-auto flex justify-end space-x-2">
+          <ControlledButton
             onClick={onCancel}
-            className="rounded-md bg-gray-200 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-300"
+            type="submit"
+            className="h-[40px] w-[120px] bg-[#E9E9E9] text-base font-bold text-[#6C7072] hover:bg-gray-600 hover:text-white"
           >
             キャンセル
-          </button>
-          <button
+          </ControlledButton>
+          <ControlledButton
             onClick={() => onSave(value)}
-            className="rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white hover:bg-blue-600"
+            type="submit"
+            className="h-[40px] w-[120px] bg-[#0066FF] text-base font-bold text-[#FFFFFF] hover:bg-blue-600 hover:text-white"
           >
             保存
-          </button>
+          </ControlledButton>
         </div>
       </div>
     </div>
