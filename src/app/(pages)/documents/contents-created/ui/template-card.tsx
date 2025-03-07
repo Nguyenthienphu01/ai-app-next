@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Checkbox } from '@/shared/ui/controlled/checkbox';
+import { cn } from '@/shared/lib/shadcn/utils';
 
 interface Template {
   image: string;
@@ -23,7 +24,7 @@ const TemplateCard: React.FC<TemplateCardProps> = ({
     <div className="h-[162px] w-[240px]">
       <div
         className={`relative w-full ${
-          isSelected ? 'rounded-lg outline outline-2 outline-blue-500' : ''
+          isSelected ? 'rounded-lg outline-2 outline-blue-500' : ''
         }`}
       >
         <img
@@ -39,9 +40,12 @@ const TemplateCard: React.FC<TemplateCardProps> = ({
 
       <div className="py-2 text-center">
         <p
-          className={`text-sm font-semibold ${
-            isSelected ? 'text-blue-500' : 'text-gray-500'
-          }`}
+          className={cn(
+            'text-sm',
+            isSelected
+              ? 'font-black text-[#0066FF]'
+              : 'font-normal text-[#161717]',
+          )}
         >
           {template.title}
         </p>

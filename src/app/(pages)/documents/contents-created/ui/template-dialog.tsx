@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import TemplateCard from './template-card';
 import Image from 'next/image';
+import { Checkbox } from '@/shared/ui/controlled/checkbox';
 
 export default function TemplateDialog({
   isOpen,
@@ -10,7 +11,7 @@ export default function TemplateDialog({
   onDownload,
   pageTitle,
 }) {
-  const [selectedTemplates, setSelectedTemplates] = useState([2]);
+  const [selectedTemplates, setSelectedTemplates] = useState([]);
 
   const templates = [
     {
@@ -28,7 +29,7 @@ export default function TemplateDialog({
     {
       id: 3,
       title: 'テンプレート 3',
-      image: '/',
+      image: '/image-test-2.png',
       type: 'Section Header',
     },
     {
@@ -85,6 +86,12 @@ export default function TemplateDialog({
       image: '/image-test.png',
       type: 'About Our Company',
     },
+    {
+      id: 13,
+      title: 'テンプレート 13',
+      image: '/image-test.png',
+      type: 'About Our Company',
+    },
   ];
 
   const toggleTemplateSelection = (templateId) => {
@@ -99,13 +106,13 @@ export default function TemplateDialog({
 
   return (
     <div className="bg-opacity-50 fixed inset-0 z-50 flex items-center justify-center bg-[#000000BF]">
-      <div className="max-h-[696px] w-[1049px] overflow-y-auto rounded-lg bg-white">
-        <div className="flex items-center justify-between border-b p-4">
+      <div className="flex h-[696px] w-[1049px] flex-col rounded-lg bg-white">
+        <div className="flex h-[58px] items-center justify-between border-b p-3">
           <div className="flex items-center">
             <h2 className="text-lg font-medium">
               ページを選択する「{pageTitle}」
             </h2>
-            <span className="ml-2 text-blue-500">
+            <span className="ml-2 text-[#0066FF]">
               <Image
                 src="/icon-edit.png"
                 width={16}
@@ -120,7 +127,7 @@ export default function TemplateDialog({
             <h2 className="text-lg font-medium">
               AIを活用した営業管理ツールのご提案
             </h2>
-            <span className="ml-2 text-blue-500">
+            <span className="ml-2 text-[#0066FF]">
               <Image
                 src="/icon-edit.png"
                 width={16}
@@ -148,7 +155,7 @@ export default function TemplateDialog({
           </button>
         </div>
 
-        <div className="grid max-h-[500px] grid-cols-1 gap-4 overflow-y-auto p-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid flex-grow grid-cols-1 gap-4 overflow-y-auto p-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {templates.map((template) => (
             <TemplateCard
               key={template.id}
@@ -159,7 +166,7 @@ export default function TemplateDialog({
           ))}
         </div>
 
-        <div className="flex items-center justify-between border-t p-4">
+        <div className="flex items-center justify-between border-t p-4 bg-[#F7F9FA]">
           <div className="flex items-center">
             <input
               type="checkbox"
@@ -173,7 +180,7 @@ export default function TemplateDialog({
           </div>
           <button
             onClick={() => onDownload(selectedTemplates)}
-            className="rounded-full bg-blue-500 px-6 py-2 font-medium text-white"
+            className="rounded-full bg-[#0066FF] px-6 py-2 font-medium text-white"
             disabled={selectedTemplates.length === 0}
           >
             ダウンロード
