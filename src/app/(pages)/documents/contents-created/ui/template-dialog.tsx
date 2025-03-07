@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import TemplateCard from './template-card';
+import Image from 'next/image';
 
 export default function TemplateDialog({
   isOpen,
@@ -15,68 +16,73 @@ export default function TemplateDialog({
     {
       id: 1,
       title: 'テンプレート 1',
-      image: '/template1.jpg',
+      image: '/image-test.png',
       type: 'Business Slide Deck',
     },
-    { id: 2, title: 'テンプレート 2', image: '/template2.jpg', type: 'Agenda' },
+    {
+      id: 2,
+      title: 'テンプレート 2',
+      image: '/image-test-1.png',
+      type: 'Agenda',
+    },
     {
       id: 3,
       title: 'テンプレート 3',
-      image: '/template3.jpg',
+      image: '/',
       type: 'Section Header',
     },
     {
       id: 4,
       title: 'テンプレート 4',
-      image: '/template4.jpg',
+      image: '/image-test.png',
       type: 'Value Proposition',
     },
     {
       id: 5,
       title: 'テンプレート 5',
-      image: '/template5.jpg',
+      image: '/image-test.png',
       type: 'Quick Stats',
     },
     {
       id: 6,
       title: 'テンプレート 6',
-      image: '/template6.jpg',
+      image: '/image-test.png',
       type: 'Opportunities & Challenges',
     },
     {
       id: 7,
       title: 'テンプレート 7',
-      image: '/template7.jpg',
+      image: '/image-test.png',
       type: 'Roadmap',
     },
     {
       id: 8,
       title: 'テンプレート 8',
-      image: '/template8.jpg',
+      image: '/image-test.png',
       type: 'Performance',
     },
     {
       id: 9,
       title: 'テンプレート 9',
-      image: '/template9.jpg',
+      image: '/image-test.png',
       type: 'Section Header',
     },
     {
       id: 10,
       title: 'テンプレート 10',
-      image: '/template10.jpg',
+      image: '/image-test.png',
       type: 'Trending Services',
     },
     {
       id: 11,
       title: 'テンプレート 11',
-      image: '/template11.jpg',
+      image: '/image-test.png',
       type: 'Hierarchy Diagram',
     },
     {
       id: 12,
       title: 'テンプレート 12',
-      image: '/template12.jpg',
+      image: '/image-test.png',
       type: 'About Our Company',
     },
   ];
@@ -100,14 +106,14 @@ export default function TemplateDialog({
               ページを選択する「{pageTitle}」
             </h2>
             <span className="ml-2 text-blue-500">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
-              </svg>
+              <Image
+                src="/icon-edit.png"
+                width={16}
+                height={16}
+                loading="eager"
+                alt="edit title"
+                priority
+              />
             </span>
           </div>
           <div className="flex items-center">
@@ -115,14 +121,14 @@ export default function TemplateDialog({
               AIを活用した営業管理ツールのご提案
             </h2>
             <span className="ml-2 text-blue-500">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" />
-              </svg>
+              <Image
+                src="/icon-edit.png"
+                width={16}
+                height={16}
+                loading="eager"
+                alt="edit title"
+                priority
+              />
             </span>
           </div>
           <button
@@ -142,7 +148,7 @@ export default function TemplateDialog({
           </button>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="grid max-h-[500px] grid-cols-1 gap-4 overflow-y-auto p-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {templates.map((template) => (
             <TemplateCard
               key={template.id}
