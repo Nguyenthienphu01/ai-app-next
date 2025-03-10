@@ -6,7 +6,8 @@ import { MainTitle } from '@/shared/ui/main-title';
 import type { Breadcrumb as TBreadcrumb } from '@/shared/types/breadcrumb';
 import { ControlledButton } from '@/shared/ui/controlled/button';
 import { TableOfContentsItem } from './ui/table-of-contents-item';
-import TemplateDialog from './ui/template-dialog';
+import TemplateDialog from './ui/template-dialog-delete';
+import ConfirmModal from './ui/confirm-modal';
 
 export default function CreateDocumentPage() {
   const breadcrumbs: TBreadcrumb[] = [
@@ -75,10 +76,14 @@ export default function CreateDocumentPage() {
     setIsDialogOpen(true);
   };
 
-  const handleDownload = (selectedTemplateIds) => {
-    console.log('Selected templates:', selectedTemplateIds);
+  const handleDownload = () => {
+    console.log('Selected templates:', );
     setIsDialogOpen(false);
   };
+
+  const [modalType, setModalType] = useState<'success' | 'confirm' | null>(
+    null,
+  );
 
   return (
     <MainLayout breadcrumbs={breadcrumbs}>
@@ -126,11 +131,27 @@ export default function CreateDocumentPage() {
           <ControlledButton
             type="submit"
             className="bg-[#4C5769] text-white hover:bg-gray-600 hover:text-white"
+            onClick={() => setModalType('success')}
           >
             更新
           </ControlledButton>
         </div>
       </div>
+
+      <ConfirmModal
+        isOpen={!!modalType}
+        type={modalType || 'success'}
+        message={
+          modalType === 'confirm'
+            ? 'このファイルを削除しますか。'
+            : '作成しました。'
+        }
+        onClose={() => setModalType(null)}
+        onConfirm={() => {
+          alert('File đã bị xóa!');
+          setModalType(null);
+        }}
+      />
 
       <TemplateDialog
         isOpen={isDialogOpen}

@@ -24,13 +24,15 @@ export function Checkbox({
       checked={checked}
       onCheckedChange={onCheckedChange}
       className={cn(
-        'flex size-6 items-center justify-center rounded border border-blue-500 bg-white transition-all',
-        checked && 'bg-blue-500 text-white',
+        'flex size-6 items-center justify-center rounded border border-[#0066FF] bg-white transition-all',
+        checked && 'bg-[#0066FF] text-white',
         className,
       )}
       {...props}
     >
-      {checked && <CheckIcon className="size-4" />}
+      {checked && (
+        <CheckIcon className="size-4" stroke="white" strokeWidth={3} />
+      )}
     </CheckboxPrimitive.Root>
   );
 }
